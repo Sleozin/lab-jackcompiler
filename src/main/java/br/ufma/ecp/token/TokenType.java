@@ -20,6 +20,7 @@ public enum TokenType {
      // Literals.
      NUMBER,
      IDENT,
+     STRING,
 
      // keywords
     WHILE, CLASS,CONSTRUCTOR,FUNCTION,

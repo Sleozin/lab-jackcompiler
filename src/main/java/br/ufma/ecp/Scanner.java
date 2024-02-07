@@ -86,6 +86,17 @@ private boolean isAlphaNumeric(char c) {
         String n = new String(input, start, current-start)  ;
         return new Token(TokenType.NUMBER, n);
     }
+    private Token string () {
+        advance();
+        int start = current;
+        while (peek() != '"' && peek() != 0) {
+            advance();
+        }
+        String s = new String(input, start, current-start, StandardCharsets.UTF_8);
+        Token token = new Token (TokenType.STRING,s);
+        advance();
+        return token;
+ }
 
     private Token identifier() {
         int start = current;
@@ -119,6 +130,8 @@ private boolean isAlphaNumeric(char c) {
         
 
         switch (ch) {
+            case '"':
+                return string();
             case '/':
             advance();
             return new Token (TokenType.SLASH,"/");
