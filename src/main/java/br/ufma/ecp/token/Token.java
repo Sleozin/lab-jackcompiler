@@ -10,8 +10,8 @@ public class Token {
     }
 
     public String toString() {
-        var type = this.type.toString();
-        if (type.equals("NUMBER"))
+       /* var type = this.type.toString();
+       if (type.equals("NUMBER"))
             type =  "intConst";
 
         if (type.equals("STRING"))
@@ -20,12 +20,12 @@ public class Token {
         if (type.equals("IDENT"))
             type =  "identifier";
 
-        if (TokenType.isSymbol(lexeme.charAt(0)))
+         if (TokenType.isSymbol(lexeme.charAt(0)))
             type = "symbol";
 
         if (TokenType.isKeyword(this.type) )
             type = "keyword";
-    
+    */
 
         return "<"+ type +">" + lexeme + "</"+ type + ">";
     }
