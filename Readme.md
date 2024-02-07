@@ -1,2 +1,4 @@
-mvn package
-java -cp target/jackcompiler-1.0-SNAPSHOT.jar br.ufma.ecp.App
+Projeto de analisador lexico para a cadeira de compiladores
+
+Feito por : Leonardo Dos Santos Pereira
+Sem Dupla
