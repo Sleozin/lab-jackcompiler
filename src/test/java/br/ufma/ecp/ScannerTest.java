@@ -43,6 +43,25 @@ public class ScannerTest extends TestSupport {
         assertEquals(expectedResult, result.toString());
     }
 
+    @Test
+    public void testScannerAula() throws IOException {
+        var input = fromFile("Square/Main.jack");
+        var expectedResult =  fromFile("Square/MainT.xml");
+
+        var scan = new Scanner(input.getBytes(StandardCharsets.UTF_8));
+        var result = new StringBuilder();
+        
+        result.append("<tokens>\r\n");
+
+        for (Token tk = scan.nextToken(); tk.type !=TokenType.EOF; tk = scan.nextToken()) {
+            result.append(String.format("%s\r\n",tk.toString()));
+        }
+
+        result.append("</tokens>\r\n");
+        
+        assertEquals(expectedResult, result.toString());
+    }
+
 
     @Test
     public void testScannerWithSquare() throws IOException {

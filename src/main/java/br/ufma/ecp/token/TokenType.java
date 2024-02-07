@@ -28,7 +28,13 @@ public enum TokenType {
     CHAR,BOOLEAN,VOID,TRUE,FALSE,
     NULL,THIS,LET,DO,IF,ELSE, RETURN,
 
-     EOF
+     EOF;
+
+     static public boolean isSymbol (String c) {
+        String symbols = "{}()[].,;+-*/&|<>=~";
+        return symbols.indexOf(c) > -1;
+
+    }
 
      //static public boolean isSymbol (char c) {
        // String symbols = "{}()[].,;+-*/&|<>=~";
