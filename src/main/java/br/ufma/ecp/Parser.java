@@ -28,6 +28,12 @@ public class Parser {
      public void parse () {
          
      }
+       //identifier '(' ')'
+       void parseSubroutineCall() {
+        expectPeek(IDENT);
+        expectPeek(LPAREN);
+        expectPeek(RPAREN);
+     }
      //letStatement -> 'let' identifier( '[' expression ']' )? '=' expression ';’
      void parseLet() {
         printNonTerminal("letStatement");
