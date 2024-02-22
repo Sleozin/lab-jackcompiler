@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "br.ufma.ecp.App",
             "projectName": "jackcompiler",
-            "args": "11/Average"
+            "args": "11/Square"
         }
     ]
 }
