@@ -12,6 +12,7 @@ public class Parser {
 
     private static class ParseError extends RuntimeException {}
 
+    private SymbolTable symTable = new SymbolTable();
     private int ifLabelNum = 0 ;
     private int whileLabelNum = 0;
     private Scanner scan;
