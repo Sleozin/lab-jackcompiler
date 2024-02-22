@@ -3,6 +3,7 @@ package br.ufma.ecp;
 import static br.ufma.ecp.token.TokenType.*;
 
 import br.ufma.ecp.SymbolTable.Kind;
+import br.ufma.ecp.SymbolTable.Symbol;
 
 import static br.ufma.ecp.SymbolTable.*;
 import br.ufma.ecp.VMWriter.Command;
@@ -415,6 +416,7 @@ public class Parser {
                 break;
             case IDENT:
                 expectPeek(IDENT);
+                Symbol sym = symTable.resolve(currentToken.lexeme);
                 if (peekTokenIs(LPAREN) || peekTokenIs(DOT)) {
                     parseSubroutineCall();
                 } else { // variavel comum ou array
@@ -422,7 +424,9 @@ public class Parser {
                         expectPeek(LBRACKET);
                         parseExpression();
                         expectPeek(RBRACKET);
-                    } 
+                    } else {
+                        vmWriter.writePush(kind2Segment(sym.kind()), sym.index());
+                    }
                 }
                 break;
             case LPAREN:
@@ -452,6 +456,17 @@ public class Parser {
    }
     public String XMLOutput() {
         return xmlOutput.toString();
+    }
+    private Segment kind2Segment(Kind kind) {
+        if (kind == Kind.STATIC)
+            return Segment.STATIC;
+        if (kind == Kind.FIELD)
+            return Segment.THIS;
+        if (kind == Kind.VAR)
+            return Segment.LOCAL;
+        if (kind == Kind.ARG)
+            return Segment.ARG;
+        return null;
     }
 
     private void printNonTerminal(String nterminal) {
